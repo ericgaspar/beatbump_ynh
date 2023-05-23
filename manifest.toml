@@ -3,11 +3,11 @@ packaging_format = 2
 id = "beatbump"
 name = "Beatbump"
 description.en = "Alternative YouTube Music frontend built with Svelte/SvelteKit"
-description.fr = "Alternative YouTube Music frontend built with Svelte/SvelteKit"
+description.fr = "Interface alternative YouTube Music construite avec Svelte/SvelteKit"
 
-version = "1.0~ynh1"
+version = "0.29.0~ynh1"
 
-maintainers = [""]
+maintainers = ["eric_G"]
 
 [upstream]
 license = "AGPL-3.0"
