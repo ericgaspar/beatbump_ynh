@@ -65,8 +65,7 @@ pushd $install_dir/app/
 	ynh_use_nodejs
 	npm ci
 	ynh_add_config --template="../conf/beatbump.conf.json" --destination="$install_dir/app/beatbump.conf.json"
-	npm install -g vercel
-	npm run vercel:deploy	
+	npm npm run bb:build
 popd
 
 #=================================================
