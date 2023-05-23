@@ -54,8 +54,6 @@ ynh_add_config --template="../conf/.env" --destination="$install_dir/.env"
 chmod 400 "$install_dir/.env"
 chown $app:$app "$install_dir/.env"
 
-ynh_add_config --template="../conf/beatbump.conf.json" --destination="$install_dir/app/beatbump.conf.json"
-
 #=================================================
 # INSTALL THE APP
 #=================================================
@@ -63,8 +61,8 @@ ynh_script_progression --message="Installing $app..." --weight=10
 
 pushd $install_dir/app/
 	ynh_use_nodejs
-	ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $ynh_npm ci #--production #--ignore-scripts
-	ynh_add_config --template="../conf/beatbump.conf.json" --destination="$install_dir/app/beatbump.conf.json"
+	ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $ynh_npm ci
+	#ynh_add_config --template="../conf/beatbump.conf.json" --destination="$install_dir/app/beatbump.conf.json"
 	ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $ynh_npm run bb:build
 popd
 
