@@ -63,9 +63,9 @@ ynh_script_progression --message="Installing $app..." --weight=10
 
 pushd $install_dir/app/
 	ynh_use_nodejs
-	npm ci
+	npm ci --production --ignore-scripts
 	ynh_add_config --template="../conf/beatbump.conf.json" --destination="$install_dir/app/beatbump.conf.json"
-	npm run bb:build
+	npm run build
 popd
 
 #=================================================
