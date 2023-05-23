@@ -3,7 +3,6 @@ Description=Beatbump
 After=network.target
 
 [Service]
-[Service]
 Type=simple
 User=__APP__
 Group=__APP__

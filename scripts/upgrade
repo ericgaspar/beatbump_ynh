@@ -35,6 +35,18 @@ fi
 chown -R $app:www-data "$install_dir"
 
 #=================================================
+# INSTALL THE APP
+#=================================================
+ynh_script_progression --message="Installing $app..." --weight=10
+
+pushd $install_dir/app/
+	ynh_use_nodejs
+	ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $ynh_npm ci
+	#ynh_add_config --template="../conf/beatbump.conf.json" --destination="$install_dir/app/beatbump.conf.json"
+	ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $ynh_npm run bb:build
+popd
+
+#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
@@ -43,7 +55,7 @@ ynh_add_nginx_config
 
 ynh_add_systemd_config
 
-yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Alternative YouTube Music frontend" --log="/var/log/$app/$app.log"
 
 #=================================================
 # RECONFIGURE THE APP (UPDATE CONF, APPLY MIGRATIONS...)
